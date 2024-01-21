@@ -10,4 +10,10 @@ module mux_2x1(
   and G2(a0, in[0], inv_sel);
   and G3(a1, in[1], sel);
   or  #1.5  G4(out, a0, a1);   
+
+  initial begin
+    $dumpfile("dump.vcd.tmp");
+    $dumpvars;
+  end
 endmodule
+

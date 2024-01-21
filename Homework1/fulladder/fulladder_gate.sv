@@ -9,4 +9,9 @@ module fulladder(
   and a1(w2, w0, cin);
   or r0(cout, w2, w1);   
   xor x1(sum, w0, cin);
+
+  initial begin
+    $dumpfile("dump.vcd.tmp");
+    $dumpvars;
+  end
 endmodule

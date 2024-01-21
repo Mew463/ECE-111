@@ -1,0 +1,64 @@
+$date
+	Sat Jan 20 19:15:48 2024
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1ns
+$end
+$scope module mux_2x1_testbench $end
+$var wire 1 ! tb_out $end
+$var reg 2 " tb_in [1:0] $end
+$var reg 1 # tb_sel $end
+$scope module design_instance $end
+$var wire 1 $ a0 $end
+$var wire 1 % a1 $end
+$var wire 2 & in [1:0] $end
+$var wire 1 ' inv_sel $end
+$var wire 1 ! out $end
+$var wire 1 # sel $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+$comment Show the parameter values. $end
+$dumpall
+$end
+#0
+$dumpvars
+1'
+b0 &
+0%
+0$
+0#
+b0 "
+x!
+$end
+#2
+0!
+#150
+1$
+b1 "
+b1 &
+#152
+1!
+#200
+0$
+b10 "
+b10 &
+#202
+0!
+#250
+0'
+1#
+b0 "
+b0 &
+#300
+b1 "
+b1 &
+#350
+1%
+b10 "
+b10 &
+#352
+1!

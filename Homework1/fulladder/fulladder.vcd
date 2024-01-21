@@ -1,0 +1,77 @@
+$date
+	Sat Jan 20 18:27:16 2024
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1ns
+$end
+$scope module fulladder_testbench $end
+$var wire 1 ! carryout $end
+$var wire 1 " add $end
+$var reg 1 # carryin $end
+$var reg 1 $ in0 $end
+$var reg 1 % in1 $end
+$scope module design_instance $end
+$var wire 1 $ a $end
+$var wire 1 % b $end
+$var wire 1 # cin $end
+$var wire 1 ! cout $end
+$var wire 1 " sum $end
+$var wire 1 & w0 $end
+$var wire 1 ' w1 $end
+$var wire 1 ( w2 $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+$comment Show the parameter values. $end
+$dumpall
+$end
+#0
+$dumpvars
+0(
+0'
+0&
+0%
+0$
+0#
+0"
+0!
+$end
+#150
+1"
+1&
+1$
+#200
+1%
+0$
+#250
+0"
+1!
+0&
+1'
+1$
+#300
+0!
+1"
+0'
+1#
+0%
+0$
+#350
+1!
+1(
+0"
+1&
+1$
+#400
+1%
+0$
+#450
+0(
+1"
+0&
+1'
+1$
+#500
