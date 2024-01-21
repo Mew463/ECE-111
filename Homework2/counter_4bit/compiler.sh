@@ -1,9 +1,9 @@
 # !/bin/bash
 
 # NO SPACES!!!
-toplevelname="alu_top"
-designfile="alu_top.sv alu.sv" #ADD ALL DESIGN FILES
-testbench="alu_top_testbench.sv"
+toplevelname="counter_4bit"
+designfile="counter_4bit.sv" #ADD ALL DESIGN FILES
+testbench="counter_4bit_testbench.sv"
 
 arg1=$1
 

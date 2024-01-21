@@ -23,4 +23,10 @@ module counter_4bit    // Module start declaration
 
  // Counter value assigned to output port count  
  assign count = cnt_value;
+
+ initial begin
+ $dumpfile("dump.vcd.tmp");
+ $dumpvars;
+end
+
 endmodule: counter_4bit  // Module end declaration
