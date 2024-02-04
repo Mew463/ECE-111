@@ -1,0 +1,46 @@
+$date
+	Wed Jan 24 09:43:45 2024
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1ps
+$end
+$scope module alu_top $end
+$var wire 1 ! clk $end
+$var wire 4 " operand1 [3:0] $end
+$var wire 4 # operand2 [3:0] $end
+$var wire 2 $ operation [1:0] $end
+$var wire 1 % reset $end
+$var wire 4 & alu_out [3:0] $end
+$var parameter 32 ' N $end
+$var reg 4 ( result [3:0] $end
+$scope module alu_instance $end
+$var wire 4 ) operand1 [3:0] $end
+$var wire 4 * operand2 [3:0] $end
+$var wire 2 + operation [1:0] $end
+$var parameter 32 , N $end
+$var reg 4 - alu_out [3:0] $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+$comment Show the parameter values. $end
+$dumpall
+b100 ,
+b100 '
+$end
+#0
+$dumpvars
+bx -
+bz +
+bz *
+bz )
+bx (
+bx &
+z%
+bz $
+bz #
+bz "
+z!
+$end

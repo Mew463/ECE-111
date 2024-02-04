@@ -1,0 +1,97 @@
+$date
+	Wed Jan 24 09:47:27 2024
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1ps
+$end
+$scope module alu_top_testbench $end
+$var wire 1 ! result $end
+$var parameter 32 " N $end
+$var reg 1 # clock $end
+$var reg 1 $ operand1 $end
+$var reg 1 % operand2 $end
+$var reg 2 & operation [1:0] $end
+$var reg 1 ' reset $end
+$scope module design_instance $end
+$var wire 1 # clk $end
+$var wire 1 $ operand1 $end
+$var wire 1 % operand2 $end
+$var wire 2 ( operation [1:0] $end
+$var wire 1 ' reset $end
+$var wire 1 ) alu_out $end
+$var parameter 32 * N $end
+$var reg 1 ! result $end
+$scope module alu_instance $end
+$var wire 1 $ operand1 $end
+$var wire 1 % operand2 $end
+$var wire 2 + operation [1:0] $end
+$var parameter 32 , N $end
+$var reg 1 ) alu_out $end
+$upscope $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+$comment Show the parameter values. $end
+$dumpall
+b1 ,
+b1 *
+b1 "
+$end
+#0
+$dumpvars
+b0 +
+0)
+b0 (
+1'
+b0 &
+0%
+0$
+0#
+0!
+$end
+#10000
+1#
+#20000
+0#
+0'
+#30000
+1#
+#40000
+0#
+1)
+1%
+#50000
+1!
+1#
+#60000
+0#
+0)
+b1 &
+b1 (
+b1 +
+1$
+#70000
+0!
+1#
+#80000
+0#
+1)
+b10 &
+b10 (
+b10 +
+#90000
+1!
+1#
+#100000
+0#
+b11 &
+b11 (
+b11 +
+0%
+#110000
+1#
+#120000
+0#

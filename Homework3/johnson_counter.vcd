@@ -1,0 +1,232 @@
+$date
+	Mon Jan 29 16:30:39 2024
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1ns
+$end
+$scope module johnson_counter_testbench $end
+$var wire 4 ! count [3:0] $end
+$var reg 1 " clock $end
+$var reg 4 # load_cnt [3:0] $end
+$var reg 1 $ preset $end
+$var reg 1 % reset $end
+$scope module design_instance $end
+$var wire 1 % clear $end
+$var wire 1 " clk $end
+$var wire 4 & count [3:0] $end
+$var wire 4 ' load_cnt [3:0] $end
+$var wire 1 $ preset $end
+$var parameter 32 ( WIDTH $end
+$var reg 4 ) cnt_value [3:0] $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+$comment Show the parameter values. $end
+$dumpall
+b100 (
+$end
+#0
+$dumpvars
+b0 )
+b0 '
+b0 &
+0%
+1$
+b0 #
+0"
+b0 !
+$end
+#10
+b1000 !
+b1000 &
+b1000 )
+1"
+1%
+#20
+0"
+0$
+#30
+b0 !
+b0 &
+b0 )
+1"
+#40
+0"
+1$
+#50
+b1000 !
+b1000 &
+b1000 )
+1"
+#60
+0"
+#70
+b1100 !
+b1100 &
+b1100 )
+1"
+#80
+0"
+#90
+b1110 !
+b1110 &
+b1110 )
+1"
+#100
+0"
+#110
+b1111 !
+b1111 &
+b1111 )
+1"
+#120
+0"
+#130
+b111 !
+b111 &
+b111 )
+1"
+#140
+0"
+#150
+b11 !
+b11 &
+b11 )
+1"
+#160
+0"
+#170
+b1 !
+b1 &
+b1 )
+1"
+#180
+0"
+#190
+b0 !
+b0 &
+b0 )
+1"
+#200
+0"
+#210
+b1000 !
+b1000 &
+b1000 )
+1"
+#220
+0"
+#230
+b1100 !
+b1100 &
+b1100 )
+1"
+#240
+0"
+#250
+b1110 !
+b1110 &
+b1110 )
+1"
+#260
+0"
+#270
+b1111 !
+b1111 &
+b1111 )
+1"
+#280
+0"
+#290
+b111 !
+b111 &
+b111 )
+1"
+#300
+0"
+#310
+b11 !
+b11 &
+b11 )
+1"
+#320
+0"
+#330
+b1 !
+b1 &
+b1 )
+1"
+#340
+0"
+#350
+b0 !
+b0 &
+b0 )
+1"
+#360
+0"
+#370
+b1000 !
+b1000 &
+b1000 )
+1"
+#380
+0"
+b0 !
+b0 &
+b0 )
+0%
+#390
+b1000 !
+b1000 &
+b1000 )
+1"
+#400
+0"
+1%
+#410
+1"
+b1000 #
+b1000 '
+0$
+#420
+0"
+1$
+#430
+b1100 !
+b1100 &
+b1100 )
+1"
+#440
+0"
+#450
+b1110 !
+b1110 &
+b1110 )
+1"
+#460
+0"
+#470
+b1111 !
+b1111 &
+b1111 )
+1"
+#480
+0"
+#490
+b111 !
+b111 &
+b111 )
+1"
+#500
+0"
+#510
+b11 !
+b11 &
+b11 )
+1"
+#520
+0"
