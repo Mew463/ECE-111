@@ -12,7 +12,7 @@ if [ "$arg1" = "sim" ]; then
     vvp $toplevelname.vvp -o
     rm $toplevelname.vvp
     mv dump.vcd.tmp  $toplevelname.vcd
-    # gtkwave $toplevelname.vcd
+    gtkwave $toplevelname.vcd
 
 elif [ "$arg1" = "syn" ]; then
     yosys -p "read_verilog -sv $designfile; synth_ice40"

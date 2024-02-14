@@ -30,7 +30,7 @@ module lfsr_testbench;
    #10;
    load_seed = 1;
    seed_data = {N{1'b1}}; //Change value to change seed
-   // seed_data = {N{1'b0}};
+  //  seed_data = 4'b0000;
 
    #20;
    load_seed = 0;

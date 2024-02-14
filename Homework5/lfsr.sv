@@ -9,44 +9,38 @@ module lfsr
 );
 
 logic[N-1:0] my_lfsr_data;
-logic[N-1:0] next_lfsr_data;
+int count = 0;
 
-always @(negedge reset_n) 
+always_ff @(posedge clk, negedge reset_n) // Want to use always_ff for clock 
 begin
-  my_lfsr_data = {N{1'b1}};
-end
-
-always @(posedge clk)
-begin
-  if (load_seed)
-    my_lfsr_data = seed_data;
+  if (!reset_n) begin
+    my_lfsr_data <= {N{1'b0}};
+    count <= 0;
+  end
   else begin
-    case (N)
-      2: my_lfsr_data = {my_lfsr_data[N-1:0], my_lfsr_data[N-1] ^ my_lfsr_data[0]};
-      3: my_lfsr_data = {my_lfsr_data[N-1:0], my_lfsr_data[N-1] ^ my_lfsr_data[1]};
-      4: my_lfsr_data = {my_lfsr_data[N-1:0], my_lfsr_data[N-1] ^ my_lfsr_data[2]};
-      5: my_lfsr_data = {my_lfsr_data[N-1:0], my_lfsr_data[N-1] ^ my_lfsr_data[2]};
-      6: my_lfsr_data = {my_lfsr_data[N-1:0], my_lfsr_data[N-1] ^ my_lfsr_data[4]};
-      7: my_lfsr_data = {my_lfsr_data[N-1:0], my_lfsr_data[N-1] ^ my_lfsr_data[5]};
-      8: my_lfsr_data = {my_lfsr_data[N-1:0], my_lfsr_data[N-1] ^ my_lfsr_data[5] ^  my_lfsr_data[4] ^  my_lfsr_data[3]};
-    endcase
+    if (load_seed) begin
+      my_lfsr_data <= seed_data;
+      count <= 0;
+    end
+    else begin
+      if (N != 5 && N != 8) 
+        my_lfsr_data <= {my_lfsr_data[N-1:0], my_lfsr_data[N-1] ^ my_lfsr_data[N-2]};
+      else if (N == 5) 
+        my_lfsr_data <= {my_lfsr_data[N-1:0], my_lfsr_data[N-1] ^ my_lfsr_data[N-3]};
+      else 
+        my_lfsr_data <= {my_lfsr_data[N-1:0], my_lfsr_data[N-1] ^ my_lfsr_data[5] ^  my_lfsr_data[4] ^  my_lfsr_data[3]};
 
-    case (N)
-      2: next_lfsr_data = {my_lfsr_data[N-1:0], my_lfsr_data[N-1] ^ my_lfsr_data[0]};
-      3: next_lfsr_data = {my_lfsr_data[N-1:0], my_lfsr_data[N-1] ^ my_lfsr_data[1]};
-      4: next_lfsr_data = {my_lfsr_data[N-1:0], my_lfsr_data[N-1] ^ my_lfsr_data[2]};
-      5: next_lfsr_data = {my_lfsr_data[N-1:0], my_lfsr_data[N-1] ^ my_lfsr_data[2]};
-      6: next_lfsr_data = {my_lfsr_data[N-1:0], my_lfsr_data[N-1] ^ my_lfsr_data[4]};
-      7: next_lfsr_data = {my_lfsr_data[N-1:0], my_lfsr_data[N-1] ^ my_lfsr_data[5]};
-      8: next_lfsr_data = {my_lfsr_data[N-1:0], my_lfsr_data[N-1] ^ my_lfsr_data[5] ^  my_lfsr_data[4] ^  my_lfsr_data[3]};
-    endcase
-
-    if (next_lfsr_data == seed_data)
-      lfsr_done = 1;
-    else  
-      lfsr_done = 0;
+      // $display("%d", count);
+      if (count == (2**N))
+        count <= 2;
+      else
+        count <= count + 1;
+  
+    end
   end
 end
+
+assign lfsr_done = (count == (2**N)-2);
 
 assign lfsr_data = my_lfsr_data;
 
