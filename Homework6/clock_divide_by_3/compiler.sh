@@ -1,9 +1,9 @@
 # !/bin/bash
 
 # NO SPACES!!!
-toplevelname="alu_top"
-designfile="tinker.sv" #ADD ALL DESIGN FILES
-testbench="tinker_tb.sv"
+toplevelname="clock_divide_by_3"
+designfile="clock_divide_by_3.sv" #ADD ALL DESIGN FILES
+testbench="clock_divide_by_3_testbench.sv"
 
 arg1=$1
 
