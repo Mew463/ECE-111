@@ -8,15 +8,14 @@ module conv_enc #(parameter N = 6)( // N = shift reg. length
   output logic[1:0] data_out    // encoded data out
 );  
 
-logic [1:0] my_data_out = {N{1'b0}};
-logic [N-1:0] shift_reg, mask_a, mask_b = {N{1'b0}};
-
+logic [N-1:0] shift_reg, mask_a, mask_b;
 
 always_ff @(posedge clk, negedge reset) begin // This should be shift register code
   if (!reset) 
     shift_reg <= {N{1'b0}};
   else 
-    shift_reg <= {data_in, shift_reg[N-1:1]}; // According to testbench it should be MSB on the left
+    if (load_mask == 2'b00)
+      shift_reg <= {data_in, shift_reg[N-1:1]}; // According to testbench it should be MSB on the left
 end
 
 always_ff @(posedge clk) begin // Check for loading on the posedge of every clock
@@ -27,10 +26,8 @@ always_ff @(posedge clk) begin // Check for loading on the posedge of every cloc
 end
 
 always_comb begin
-  my_data_out[0] = ^(mask_a & shift_reg);
-  my_data_out[1] = ^(mask_b & shift_reg);
+  data_out[0] = ^(mask_a & shift_reg);
+  data_out[1] = ^(mask_b & shift_reg);
 end
-
-assign data_out = my_data_out;
 
 endmodule

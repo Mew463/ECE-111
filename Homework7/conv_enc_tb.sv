@@ -1,4 +1,4 @@
-`timescale 1ns/1ns // testbench code is missing this??? Isnt this just good practice 
+`timescale 1ns/1ns // testbench code is missing this??? Without it fails
 
 module conv_enc_tb;
   parameter N = 4;                  // set to desired constraint length + 1;
@@ -17,15 +17,10 @@ module conv_enc_tb;
         .mask,
         .data_out);
 
-always  // This literally does not compile
-begin
+always begin
   #5ns clk = 1'b1;
   #5ns clk = 1'b0;
 end
-
-// always @(clk) begin
-//   #5ns clk <= !clk;
-// end
 
 always @(posedge clk)               // histo = "history"
   histo <= {data_in,histo[N-1:1]};	// just a shift register
@@ -49,7 +44,7 @@ initial begin
   #10ns reset     = 1'b1;		  // start running
   #10ns data_in   = 1'b0;		  // sequence from Viterbi demo
   #90ns data_in   = 1'b1;
-// sequence from thesis
+  // sequence from thesis
   #10ns data_in   = 1'b1;
   #10ns data_in   = 1'b0;
   #10ns data_in   = 1'b1;
