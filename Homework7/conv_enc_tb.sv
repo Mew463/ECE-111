@@ -1,25 +1,30 @@
+`timescale 1ns/1ns // testbench code is missing this??? Isnt this just good practice 
+
 module conv_enc_tb;
+  parameter N = 4;                  // set to desired constraint length + 1;
+  bit          clk, data_in, reset;
+  bit  [  1:0] load_mask;		      // 01: load mask 0; 10: load mask 1
+  bit  [N-1:0] mask, mask0, mask1,   // prepend desired mask vaue with 1
+              histo;
+  logic[  1:0] data_outP;
+  wire [  1:0] data_out;			  // assumes rate 1/2
 
-parameter N = 4;                  // set to desired constraint length + 1;
-bit          clk, data_in, reset;
-bit  [  1:0] load_mask;		      // 01: load mask 0; 10: load mask 1
-bit  [N-1:0] mask, mask0, mask1,   // prepend desired mask vaue with 1
-             histo;
-logic[  1:0] data_outP;
-wire [  1:0] data_out;			  // assumes rate 1/2
+  // rate 1/2, constraint N-1 convolutional encoder
+  conv_enc #(.N(N)) ce1(.clk,
+              .data_in,
+        .reset,
+        .load_mask,
+        .mask,
+        .data_out);
 
-// rate 1/2, constraint N-1 convolutional encoder
-conv_enc #(.N(N)) ce1(.clk,
-             .data_in,
-			 .reset,
-			 .load_mask,
-			 .mask,
-			 .data_out);
+always  // This literally does not compile
+begin
+  #5ns clk = 1'b1;
+  #5ns clk = 1'b0;
+end
 
-// always 
-// begin
-//   #5ns clk = 1'b1;
-//   #5ns clk = 1'b0;
+// always @(clk) begin
+//   #5ns clk <= !clk;
 // end
 
 always @(posedge clk)               // histo = "history"
@@ -33,7 +38,6 @@ always @(negedge clk)
 
 initial begin
   clk = 0; // Initialize clock
-  forever #5 clk = !clk;
   #10ns mask      =  'o17;//'o15;		  // 5 with 1 prepended
         mask0     =  mask;
   #10ns load_mask = 2'b01;
@@ -60,12 +64,12 @@ initial begin
   #10ns data_in   = 1'b0;
   #10ns data_in   = 1'b0;
     
-  #40ns $finish();
+  // #40ns $finish();
   #10ns data_in   = 1'b0;
   #10ns data_in   = 1'b1;
   #10ns data_in   = 1'b1;
   #10ns data_in   = 1'b0;
-  #40ns $finish(); 
+  // #40ns $finish(); 
   #40ns data_in   = 1'b1;
   #10ns data_in   = 1'b0;
   #10ns data_in   = 1'b1;
@@ -78,7 +82,7 @@ initial begin
   #10ns data_in   = 1'b0;
   #10ns data_in   = 1'b0;
   #10ns data_in   = 1'b0;
-  #10ns $finish(); 
+  // #10ns $finish(); 
   #40ns data_in   = 1'b1;
   #10ns data_in   = 1'b0;
   #10ns data_in   = 1'b1;
@@ -86,7 +90,7 @@ initial begin
   #10ns data_in   = 1'b1;
   #10ns data_in   = 1'b0;
   #10ns data_in   = 1'b0;
-  #40ns $finish(); 
+  // #40ns $finish(); 
   #10ns data_in   = 1'b1;
   #10ns data_in   = 1'b0;
   #10ns data_in   = 1'b1;
@@ -97,11 +101,6 @@ initial begin
   #10ns data_in   = 1'b0;
   #60ns $finish();
 end
-
-// always @(clk) begin
-//   #5ns clk <= !clk;
-//   $display("im here!");
-// end
 
 always_comb begin
   data_outP[1] = ^(mask1&histo);
