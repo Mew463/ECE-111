@@ -1,5 +1,5 @@
 //UART TOP Testbench Code
-//`timescale 1ns/1ns
+`timescale 1ns/1ns
 module uart_top_testbench;
 // Uart Transmitter and Receiver clock frequency
 // CLK_PERIOD_NS * 2 = 10 x 2 = 20ns
@@ -95,7 +95,7 @@ for(integer i=0; i<4; i++) begin
 end
 
 // Wait & terminate
-#500ns $stop;
+#500ns $finish;
 end
 
 // wait for ready signal to be asserted from
@@ -109,7 +109,7 @@ always@(posedge ready) begin
   $display("Test Passed - Correct Byte Received time=%t  expected=%h   actual=%h", $time, byte_data, dout);
  else begin
   $error("Test Error- Incorrect Byte Received time=%t  expected=%h   actual=%h", $time, byte_data, dout);
-  $stop;
+  $finish;
  end
  index = index + 1; 
 end
@@ -122,5 +122,10 @@ end
 always begin
   #CLK_PERIOD_NS clock_rx = 1'b1;
   #CLK_PERIOD_NS clock_rx = 1'b0;
+end
+
+initial begin
+	$dumpfile("dump.vcd.tmp");
+	$dumpvars;
 end
 endmodule

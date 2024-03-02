@@ -53,26 +53,26 @@ always_ff@(posedge clk) begin
 				if(count == (NUM_CLKS_PER_BIT-1)) begin
 					state <= TX_DATA_BIT;
 					count <= 0;
-					end else begin
+				end else begin
 					state <= TX_START_BIT;
 					count <= count + 1;
-					end
+				end
 			end
 			TX_DATA_BIT: begin
-			tx <= din[bit_index];
+				tx <= din[bit_index];
 				done <= 0;
 				// Transmit START BIT for NUM_CLKS_PER_BIT period
-			if(count == (NUM_CLKS_PER_BIT-1)) begin
-				count <= 0;
-				// Check if all 8 data bits are transmitted
-				if(bit_index == 7) begin
-					bit_index <= 0;
-					state <= TX_STOP_BIT;
-				end
-				else begin
-					bit_index <= bit_index + 1;
-					state <= TX_DATA_BIT;
-				end
+				if(count == (NUM_CLKS_PER_BIT-1)) begin
+					count <= 0;
+					// Check if all 8 data bits are transmitted
+					if(bit_index == 7) begin
+						bit_index <= 0;
+						state <= TX_STOP_BIT;
+					end
+					else begin
+						bit_index <= bit_index + 1;
+						state <= TX_DATA_BIT;
+					end
 				end
 				else begin 
 					state <= TX_DATA_BIT; 
@@ -81,30 +81,28 @@ always_ff@(posedge clk) begin
 			end
 			TX_STOP_BIT: begin
 				tx <= 1;
-			bit_index <= 0;
-				// Transmit STOP BIT for NUM_CLKS_PER_BIT period
-			if(count == (NUM_CLKS_PER_BIT-1)) begin
-				state <= TX_CLEANUP;
-				count <= 0;
-						// Generate Done=1 which indicates that UART TX has converted 
-						// 8 paralle data bits into serial data bits and 
-						// available on output tx signal
-						done <= 1;
-			end else begin
-				state <= TX_STOP_BIT;
-				count <= count + 1;
+				bit_index <= 0;
+					// Transmit STOP BIT for NUM_CLKS_PER_BIT period
+				if(count == (NUM_CLKS_PER_BIT-1)) begin
+					state <= TX_CLEANUP;
+					count <= 0;
+					// 8 paralle data bits into serial data bits and 
+					// available on output tx signal
+					done <= 1; // Generate Done=1 which indicates that UART TX has converted 
+				end else begin
+					state <= TX_STOP_BIT;
+					count <= count + 1;
+				end
 			end
-						end
-						TX_CLEANUP: begin
-									// Stay in this state for 1 clock cycle and keep done asserted for 1 cycle
-						done <= 1;
-			state <= TX_IDLE;		            
-						end
-						default: begin
-						done <= 0;
-									state <= TX_IDLE;
-									tx <= 0;  		  
-						end
+			TX_CLEANUP: begin
+				done <= 1; // Stay in this state for 1 clock cycle and keep done asserted for 1 cycle
+				state <= TX_IDLE;		            
+			end
+			default: begin
+				done <= 0;
+				state <= TX_IDLE;
+				tx <= 0;  		  
+			end
 		endcase
 	end	
 end

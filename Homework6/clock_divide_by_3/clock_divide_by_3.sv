@@ -3,12 +3,11 @@ module clock_divide_by_3 (
  input  logic clkin, reset,
  output logic clkout);
 
-logic myclkout;
 logic [2:0] i;
 logic [2:0] nexti;
-always_ff @(posedge clkin or posedge reset) begin
+always_ff @(posedge clkin) begin
     if (reset) begin
-        myclkout <= 0;
+        clkout <= 0;
         i <= 0;
     end 
     else
@@ -16,9 +15,8 @@ always_ff @(posedge clkin or posedge reset) begin
 end
 
 always_ff @(negedge clkin) begin
-    i <= nexti;
-    // if (i != 0)
-    //     i <= i + 1;
+    if (!reset && i != 0) // Want our clock to start on the rising edge of the main clock cycle
+        i <= nexti;
 end
 
 always_comb begin
@@ -27,22 +25,9 @@ always_comb begin
         nexti = 0;
 
     if (i < 4 && i > 0)
-        myclkout = 1;
+        clkout = 1;
     else
-        myclkout = 0;
+        clkout = 0;
 end
-
-// always @(i) begin
-//     if (i > 5)
-//         i = 0;
-
-//     if (i < 4 && i > 0)
-//         myclkout = 1;
-//     else
-//         myclkout = 0;
-// end
-
-
-assign clkout = myclkout; 
 
 endmodule: clock_divide_by_3
