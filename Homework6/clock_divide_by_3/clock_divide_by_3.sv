@@ -4,31 +4,43 @@ module clock_divide_by_3 (
  output logic clkout);
 
 logic myclkout;
-int i = 0;
+logic [2:0] i;
+logic [2:0] nexti;
 always_ff @(posedge clkin or posedge reset) begin
     if (reset) begin
         myclkout <= 0;
         i <= 0;
     end 
-    else 
-        i <= i + 1;
+    else
+        i <= nexti;
 end
 
 always_ff @(negedge clkin) begin
-    if (i != 0)
-        i <= i + 1;
+    i <= nexti;
+    // if (i != 0)
+    //     i <= i + 1;
 end
 
-
-always @(i) begin
-    if (i > 5)
-        i = 0;
+always_comb begin
+    nexti = i + 1;
+    if (nexti > 5)
+        nexti = 0;
 
     if (i < 4 && i > 0)
         myclkout = 1;
     else
         myclkout = 0;
 end
+
+// always @(i) begin
+//     if (i > 5)
+//         i = 0;
+
+//     if (i < 4 && i > 0)
+//         myclkout = 1;
+//     else
+//         myclkout = 0;
+// end
 
 
 assign clkout = myclkout; 
