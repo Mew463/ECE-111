@@ -1,0 +1,194 @@
+$date
+	Thu Mar  7 14:37:04 2024
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1s
+$end
+$scope module encoder_tb $end
+$var wire 1 ! valid_o $end
+$var wire 2 " d_out [1:0] $end
+$var reg 1 # clk $end
+$var reg 1 $ d_in $end
+$var reg 1 % enable_i $end
+$var reg 1 & rst $end
+$scope module DUT $end
+$var wire 1 # clk $end
+$var wire 1 $ d_in $end
+$var wire 1 % enable_i $end
+$var wire 1 & rst $end
+$var wire 3 ' nstate [2:0] $end
+$var wire 2 ( d_out_reg [1:0] $end
+$var reg 3 ) cstate [2:0] $end
+$var reg 2 * d_out [1:0] $end
+$var reg 1 ! valid_o $end
+$var reg 1 + valid_oQ $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+$comment Show the parameter values. $end
+$dumpall
+$end
+#0
+$dumpvars
+1+
+bx *
+bx )
+bx0 (
+bx '
+0&
+1%
+0$
+0#
+bx "
+x!
+$end
+#10
+b0 (
+b0 '
+1!
+bx0 "
+bx0 *
+b0 )
+1#
+#20
+0#
+#30
+b0 "
+b0 *
+1#
+#40
+0#
+#50
+1#
+#60
+0#
+#70
+1#
+#80
+0#
+#90
+1#
+#100
+0#
+#110
+1#
+#115
+1&
+#120
+0#
+#130
+1#
+#135
+b100 '
+b11 (
+1$
+#140
+0#
+#150
+b1 (
+b110 '
+b11 "
+b11 *
+b100 )
+1#
+#155
+b10 '
+b10 (
+0$
+#160
+0#
+#170
+b10 (
+b101 '
+b10 "
+b10 *
+b10 )
+1#
+#180
+0#
+#190
+b10 (
+b110 '
+b101 )
+1#
+#200
+0#
+#210
+b0 (
+b111 '
+b110 )
+1#
+#215
+b11 '
+b11 (
+1$
+#220
+0#
+#230
+b1 (
+b101 '
+b11 "
+b11 *
+b11 )
+1#
+#235
+b1 '
+b10 (
+0$
+#240
+0#
+#250
+b0 (
+b100 '
+b10 "
+b10 *
+b1 )
+1#
+#260
+0#
+#270
+b10 (
+b10 '
+b0 "
+b0 *
+b100 )
+1#
+#275
+b110 '
+b1 (
+1$
+#280
+0#
+#290
+b11 (
+b11 '
+b1 "
+b1 *
+b110 )
+1#
+#300
+0#
+#310
+b1 (
+b101 '
+b11 "
+b11 *
+b11 )
+1#
+#315
+b1 '
+b10 (
+0$
+#320
+0#
+#330
+b0 (
+b100 '
+b10 "
+b10 *
+b1 )
+1#
+#335
