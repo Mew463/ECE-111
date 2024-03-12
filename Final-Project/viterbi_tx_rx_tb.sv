@@ -30,7 +30,7 @@ module viterbi_tx_rx_tb();
 	 l <= l+1;
    end
    initial begin   
-	 #410400;
+	 #410500;
 	 forever @(posedge clk) begin
 	   dec_o_hist[k] <= decoder_o;
 	   k<=k+1;
@@ -365,10 +365,15 @@ module viterbi_tx_rx_tb();
           $displayb("boo! in = %b, out = %b",enc_i_hist[j],dec_o_hist[j]);
           bad++;
 		end
-	  $display("good = %d, bad = %d",good,bad);
+	  $display("Results: good = %d, bad = %d",good,bad);
 	  disp = 1;
 
-      $stop;
+      $finish;
    end
+
+initial begin
+	$dumpfile("dump.vcd.tmp");
+	$dumpvars;
+end
 
 endmodule

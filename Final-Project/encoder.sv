@@ -5,6 +5,8 @@ module encoder               // use this one
    input             d_in,
    output logic      valid_o,
    output logic [1:0] d_out);
+
+   // logic [1:0] tmp_d_out;
    
    logic         [2:0] cstate;
    logic         [2:0] nstate;
@@ -28,8 +30,11 @@ module encoder               // use this one
          cstate   <= 3'b000;
       else
          cstate   <= nstate;
+      
       d_out    <=  (enable_i)? d_out_reg : 2'b00;
 	   valid_o  <= valid_oQ;
    end
+
+   // assign d_out = tmp_d_out;
 
 endmodule
